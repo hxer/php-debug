@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
 RUN cd /tmp && wget http://ftp.gnu.org/gnu/bison/bison-2.7.tar.gz && \
     tar -xvf bison-2.7.tar.gz && \
     rm bison-2.7.tar.gz && \
-    cd /bison-2.7 && \
+    cd bison-2.7 && \
     configure --prefix=/opt/bison --with-libiconv-prefix=/opt/libiconv && \
     make && make install && \
     rm -rf /tmp/bison-2.7

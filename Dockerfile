@@ -3,9 +3,8 @@ FROM debian:jessie
 # package with compile:
 #   -- build-essential autoconf automake libtool bison2.7 re2c
 RUN apt-get update && apt-get install -y \
-    build-essential autoconf automake libtool re2c \
-    wget git gdb && \
-    && rm -rf /var/lib/apt/lists/*
+    build-essential autoconf automake libtool re2c wget git gdb && \
+    rm -rf /var/lib/apt/lists/*
 
 
 RUN cd /tmp && wget http://ftp.gnu.org/gnu/bison/bison-2.7.tar.gz && \

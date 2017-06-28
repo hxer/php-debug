@@ -37,4 +37,5 @@ RUN git clone https://github.com/php/php-src.git /root/php-src && \
 
 WORKDIR /www
 #VOLUME ["/www"]
-CMD
+
+CMD ['/bin/bash']

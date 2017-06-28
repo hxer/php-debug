@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
 
 
 RUN cd /tmp && wget http://ftp.gnu.org/gnu/bison/bison-2.7.tar.gz && \
+    tar -xvf bison-2.7.tar.gz && \
     rm bison-2.7.tar.gz && \
     cd /bison-2.7 && \
     configure --prefix=/opt/bison --with-libiconv-prefix=/opt/libiconv && \
@@ -38,4 +39,4 @@ RUN git clone https://github.com/php/php-src.git /root/php-src && \
 WORKDIR /www
 #VOLUME ["/www"]
 
-CMD ['/bin/bash']
+CMD ["/bin/bash"]

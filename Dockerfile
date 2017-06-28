@@ -30,7 +30,7 @@ RUN git clone https://github.com/php/php-src.git /root/php-src && \
     cd /root/vld && \
     phpize && \
     ./configure && \
-    make && make install \
+    make && make install && \
     echo "extension=vld.so" >> /opt/php/lib/php.ini && \
     cp /root/php-src/.gdbinit /root/.gdbinit && \
     cat /tmp/.gdbinit >> /root/.gdbinit  && \

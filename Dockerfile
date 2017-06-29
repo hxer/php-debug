@@ -8,7 +8,6 @@ RUN apt-get update && apt-get install -y \
 
 ENV PATH "/opt/bison/bin:$PATH"
 ENV PATH "/opt/php/bin:$PATH"
-COPY .gdbinit /tmp/.gdbinit
 
 RUN git clone https://github.com/php/php-src.git /root/php-src && \
     git clone https://github.com/derickr/vld.git /root/vld
@@ -21,6 +20,7 @@ RUN cd /tmp && wget http://ftp.gnu.org/gnu/bison/bison-2.7.tar.gz && \
     make && make install && \
     rm -rf /tmp/bison-2.7
 
+COPY .gdbinit /tmp/.gdbinit
 ENV PHP_VERSION PHP-5.6.20
 
 RUN cd /root/php-src && \

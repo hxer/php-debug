@@ -10,7 +10,8 @@ ENV PATH "/opt/bison/bin:$PATH"
 ENV PATH "/opt/php/bin:$PATH"
 
 RUN git clone https://github.com/php/php-src.git /root/php-src && \
-    git clone https://github.com/derickr/vld.git /root/vld
+    git clone https://github.com/derickr/vld.git /root/vld && \
+    git clone https://github.com/xdebug/xdebug.git /root/xdebug
 
 RUN cd /tmp && wget http://ftp.gnu.org/gnu/bison/bison-2.7.tar.gz && \
     tar -xvf bison-2.7.tar.gz && \
@@ -23,6 +24,7 @@ RUN cd /tmp && wget http://ftp.gnu.org/gnu/bison/bison-2.7.tar.gz && \
 COPY .gdbinit /tmp/.gdbinit
 ENV PHP_VERSION PHP-5.6.20
 
+# install php, vld
 RUN cd /root/php-src && \
     git checkout $PHP_VERSION && \
     ./buildconf --force && \
@@ -35,7 +37,19 @@ RUN cd /root/php-src && \
     ./configure && \
     make && make install && \
     echo "extension=vld.so" >> /opt/php/lib/php.ini && \
+    cd /root/xdebug && \
     mkdir /www
+
+# install xdebug
+RUN cd /root && wget http://xdebug.org/files/xdebug-2.5.4.tgz && \
+    tar -xvzf xdebug-2.5.4.tgz && \
+    rm xdebug-2.5.4.tgz && \
+    cd xdebug-2.5.4 && \
+    phpize && \
+    ./configure && \
+    make && make install && \
+    echo "zend_extension=xdebug.so" >> /opt/php/lib/php.ini && \
+
 
 WORKDIR /www
 #VOLUME ["/www"]

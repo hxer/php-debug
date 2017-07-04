@@ -48,7 +48,7 @@ RUN cd /root && wget http://xdebug.org/files/xdebug-2.5.4.tgz && \
     phpize && \
     ./configure && \
     make && make install && \
-    echo "zend_extension=xdebug.so" >> /opt/php/lib/php.ini && \
+    echo "zend_extension=xdebug.so" >> /opt/php/lib/php.ini
 
 
 WORKDIR /www

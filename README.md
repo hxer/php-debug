@@ -4,7 +4,7 @@
 
 ## xdebug
 
-configure PHP to get Xdebug running: [https://xdebug.org/wizard.php](configure PHP to get Xdebug running)
+configure PHP to get Xdebug running:  [https://xdebug.org/wizard.php](https://xdebug.org/wizard.php)
 
 * analysize php
 

@@ -1,5 +1,6 @@
 # php-debug
-gdb debug php
+
+使用Docker搭建php调试环境，支持gdb, xdebug, vld等工具调试php。
 
 ## xdebug
 

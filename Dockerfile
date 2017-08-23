@@ -20,21 +20,22 @@ RUN cd /tmp && wget http://ftp.gnu.org/gnu/bison/bison-2.7.tar.gz && \
     rm -rf /tmp/bison-2.7 
 
 RUN git clone https://github.com/php/php-src.git /root/php-src && \
-    git clone https://github.com/derickr/vld.git /root/vld && \
     cd /root/php-src && \
     git checkout $PHP_VERSION && \
     ./buildconf --force && \
     ./configure --disable-all --enable-debug --prefix=/opt/php && \
     make && make install && \
     cp /root/php-src/.gdbinit /root/.gdbinit && \
-    cat /tmp/.gdbinit >> /root/.gdbinit  && \
+    cat /tmp/.gdbinit >> /root/.gdbinit 
+    
+
+RUN git clone https://github.com/derickr/vld.git /root/vld && \
     cd /root/vld && \
     phpize && \
     ./configure && \
     make && make install && \
     echo "extension=vld.so" >> /opt/php/lib/php.ini && \
-    cd /root && rm -rf php-src vld
-    
+    rm -rf /root/vld   
 
 # install xdebug
 RUN cd /root && wget http://xdebug.org/files/xdebug-2.5.4.tgz && \
@@ -45,6 +46,7 @@ RUN cd /root && wget http://xdebug.org/files/xdebug-2.5.4.tgz && \
     ./configure && \
     make && make install && \
     echo "zend_extension=xdebug.so" >> /opt/php/lib/php.ini && \
+    rm -rf /root/xdebug-2.5.4 && \
     mkdir /www
 
 

@@ -11,15 +11,16 @@ ENV PHP_VERSION PHP-5.6.20
 ENV PATH "/opt/bison/bin:$PATH"
 ENV PATH "/opt/php/bin:$PATH"
 
-RUN git clone https://github.com/php/php-src.git /root/php-src && \
-    git clone https://github.com/derickr/vld.git /root/vld && \
-    cd /tmp && wget http://ftp.gnu.org/gnu/bison/bison-2.7.tar.gz && \
+RUN cd /tmp && wget http://ftp.gnu.org/gnu/bison/bison-2.7.tar.gz && \
     tar -xvf bison-2.7.tar.gz && \
     rm bison-2.7.tar.gz && \
     cd bison-2.7 && \
     ./configure --prefix=/opt/bison --with-libiconv-prefix=/opt/libiconv && \
     make && make install && \
-    rm -rf /tmp/bison-2.7 && \
+    rm -rf /tmp/bison-2.7 
+
+RUN git clone https://github.com/php/php-src.git /root/php-src && \
+    git clone https://github.com/derickr/vld.git /root/vld && \
     cd /root/php-src && \
     git checkout $PHP_VERSION && \
     ./buildconf --force && \

@@ -7,7 +7,8 @@ RUN apt-get update && apt-get install -y \
     rm -rf /var/lib/apt/lists/*
 
 COPY .gdbinit /tmp/.gdbinit
-ENV PHP_VERSION PHP-5.6.20
+ENV PHP_VERSION php-5.6.20
+ENV PHP_URL = "https://secure.php.net/get/php-5.6.20.tar.gz/from/this/mirror"
 ENV PATH "/opt/bison/bin:$PATH"
 ENV PATH "/opt/php/bin:$PATH"
 
@@ -19,9 +20,11 @@ RUN cd /tmp && wget http://ftp.gnu.org/gnu/bison/bison-2.7.tar.gz && \
     make && make install && \
     rm -rf /tmp/bison-2.7 
 
-RUN git clone https://github.com/php/php-src.git /root/php-src && \
-    cd /root/php-src && \
-    git checkout $PHP_VERSION && \
+RUN cd /root && wget -O php-src.tar.gz "$PHP_URL" && \ 
+    tar -zxvf php-src.tar.gz && \
+    rm php-src.tar.gz && \
+    mv $PHP_VERSION php-src && \
+    cd php-src && \
     ./buildconf --force && \
     ./configure --disable-all --enable-debug --prefix=/opt/php && \
     make && make install && \

@@ -7,8 +7,8 @@ RUN apt-get update && apt-get install -y \
     rm -rf /var/lib/apt/lists/*
 
 COPY .gdbinit /tmp/.gdbinit
-ENV PHP_VERSION php-5.6.20
-ENV PHP_URL https://secure.php.net/get/php-5.6.20.tar.gz/from/this/mirror
+ENV PHP_VERSION php-5.6.3
+ENV PHP_URL https://secure.php.net/get/php-5.6.3.tar.gz/from/this/mirror
 ENV PATH "/opt/bison/bin:$PATH"
 ENV PATH "/opt/php/bin:$PATH"
 

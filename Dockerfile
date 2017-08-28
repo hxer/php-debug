@@ -3,7 +3,8 @@ FROM debian:jessie
 # package with compile:
 #   -- build-essential autoconf automake libtool bison2.7 re2c
 RUN apt-get update && apt-get install -y \
-    build-essential autoconf automake libtool re2c wget git gdb && \
+    build-essential autoconf automake libtool re2c wget git gdb \
+    libxml2-dev libmhash-dev libmcrypt-dev mcrypt libldap2-dev libsasl2-dev && \
     rm -rf /var/lib/apt/lists/*
 
 COPY .gdbinit /tmp/.gdbinit
@@ -25,7 +26,6 @@ RUN cd /root && wget -O php-src.tar.gz "$PHP_URL" && \
     rm php-src.tar.gz && \
     mv $PHP_VERSION php-src && \
     cd php-src && \
-    ./buildconf --force && \
     ./configure --enable-debug --prefix=/opt/php && \
     make && make install && \
     cp /root/php-src/.gdbinit /root/.gdbinit && \

@@ -27,7 +27,7 @@ RUN cd /root && wget -O php-src.tar.gz "$PHP_URL" && \
     rm php-src.tar.gz && \
     mv $PHP_VERSION php-src && \
     cd php-src && \
-    ./configure --enable-debug --prefix=/opt/php --with-gmp && \
+    ./configure --disable-all --enable-debug --prefix=/opt/php --with-gmp && \
     make && make install && \
     cp /root/php-src/.gdbinit /root/.gdbinit && \
     cat /tmp/.gdbinit >> /root/.gdbinit 
